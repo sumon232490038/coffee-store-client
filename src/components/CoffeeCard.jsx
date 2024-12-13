@@ -3,21 +3,37 @@ import { FaEdit } from "react-icons/fa";
 import { TbListDetails } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
-const CoffeeCard = ({ coffee, setCoffees, coffees }) => {
+const CoffeeCard = ({ coffee, handleDeleteCoffee }) => {
   const { name, photo, chef, price, _id } = coffee;
-  const handleDeleteCoffee = (_id) => {
-    fetch(`http://localhost:5000/coffee/${_id}`, {
-      method: "delete",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          alert("deleted coffee");
-          const remening = coffees.filter((coffee) => coffee._id !== _id);
-          setCoffees(remening);
-        }
-      });
-  };
+  //   const handleDeleteCoffee = (_id) => {
+  //     fetch(`http://localhost:5000/coffee/${_id}`, {
+  //       method: "delete",
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         if (data.deletedCount > 0) {
+  //           Swal.fire({
+  //             title: "Are you sure to delete?",
+  //             text: "You won't be able to revert this!",
+  //             icon: "warning",
+  //             showCancelButton: true,
+  //             confirmButtonColor: "#3085d6",
+  //             cancelButtonColor: "#d33",
+  //             confirmButtonText: "Yes, delete it!",
+  //           }).then((result) => {
+  //             if (result.isConfirmed) {
+  //               const remening = coffees.filter((coffee) => coffee._id !== _id);
+  //               setCoffees(remening);
+  //               Swal.fire({
+  //                 title: "Deleted!",
+  //                 text: "Coffee  has been deleted.",
+  //                 icon: "success",
+  //               });
+  //             }
+  //           });
+  //         }
+  //       });
+  //   };
   return (
     <div className="grid grid-cols-3 capitalize justify-between items-center bg-[#F5F4F1]  rounded-none border-2">
       <div>
