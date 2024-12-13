@@ -1,5 +1,6 @@
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { Link } from "react-router-dom";
 
 const AddCoffee = () => {
   const handleCoffeeFormData = (e) => {
@@ -12,7 +13,7 @@ const AddCoffee = () => {
     const chef = form.chef.value;
     const details = form.details.value;
     const category = form.category.value;
-    const taste = form.name.value;
+    const price = form.price.value;
 
     const coffeeData = {
       name,
@@ -21,7 +22,7 @@ const AddCoffee = () => {
       chef,
       details,
       category,
-      taste,
+      price,
     };
     // console.log(coffeeData);
     fetch("http://localhost:5000/addCoffee", {
@@ -42,11 +43,15 @@ const AddCoffee = () => {
             icon: "success",
             confirmButtonText: "Cool",
           });
+          form.reset();
         }
       });
   };
   return (
-    <div className="w-10/12 mx-auto p-5 my-10 bg-[#F4F3F0]">
+    <div className="w-10/12 mx-auto p-5 my-10 bg-[#F4F3F0] capitalize">
+      <Link to="/" className="btn btn-neutral">
+        Back Home
+      </Link>
       <h1 className="text-center text-5xl text-purple-400 font-bold ">
         Add Coffee!
       </h1>
@@ -54,7 +59,7 @@ const AddCoffee = () => {
         <div></div>
         <form
           onSubmit={handleCoffeeFormData}
-          className="grid grid-cols-2 grid-rows-3 gap-5 "
+          className="grid grid-cols-2 capitalize grid-rows-3 gap-5 "
         >
           <div className="form-control">
             <label className="label">
@@ -106,13 +111,13 @@ const AddCoffee = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text font-bold text-xl">Taste</span>
+              <span className="label-text font-bold text-xl">price</span>
             </label>
             <input
-              type="text"
-              placeholder="Enter Coffee Taste"
+              type="number"
+              placeholder="Enter Coffee price"
               className="input "
-              name="taste"
+              name="price"
               required
             />
           </div>
